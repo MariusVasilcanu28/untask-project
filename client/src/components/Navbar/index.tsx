@@ -3,14 +3,20 @@ import { Menu, Moon, Search, Settings, Sun } from "lucide-react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsDarkMode, setIsSidebarCollapsed } from "@/state";
+import { applyTheme } from "@/lib/theme";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed,
   );
-
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+  const toggleTheme = () => {
+    const next = !isDarkMode;
+    applyTheme(next ? "dark" : "light");
+    dispatch(setIsDarkMode(next));
+  };
 
   return (
     <div className="flex items-center justify-between bg-white px-4 py-3 dark:bg-black">
@@ -38,7 +44,7 @@ const Navbar = () => {
       {/* icons */}
       <div className="flex items-center">
         <button
-          onClick={() => dispatch(setIsDarkMode(!isDarkMode))}
+          onClick={toggleTheme}
           className={
             isDarkMode
               ? `rounded p-2 dark:hover:bg-gray-700`

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DashboardWrapper from "./dashboardWrapper";
+import Script from "next/script";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -23,6 +24,23 @@ export const metadata: Metadata = {
   },
 };
 
+const themeInit = `
+(function () {
+  try {
+    var KEY = 'untask-theme'; // 'dark' | 'light'
+    var stored = localStorage.getItem(KEY);
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored || (systemDark ? 'dark' : 'light');
+    var root = document.documentElement;
+
+    if (theme === 'dark') root.classList.add('dark');
+    else root.classList.remove('dark');
+
+    root.setAttribute('data-theme', theme);
+  } catch (_) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +48,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <head>
+        <Script id="untask-theme-init" strategy="beforeInteractive">
+          {themeInit}
+        </Script>
+      </head>
+      <body suppressHydrationWarning>
         <DashboardWrapper>{children}</DashboardWrapper>
       </body>
     </html>
