@@ -6,10 +6,10 @@ import { useState } from "react";
 type ModalNewTaskProps = {
   isOpen: boolean;
   onClose: () => void;
-  id: string;
+  id?: string | null;
 };
 
-function ModalNewTask({ isOpen, onClose, id }: ModalNewTaskProps) {
+function ModalNewTask({ isOpen, onClose, id = null }: ModalNewTaskProps) {
   const [createTask, { isLoading }] = useCreateTaskMutation();
 
   const [title, setTitle] = useState("");
@@ -25,7 +25,7 @@ function ModalNewTask({ isOpen, onClose, id }: ModalNewTaskProps) {
   const [projectId, setProjectId] = useState("");
 
   const handleSubmit = async () => {
-    if (!title || !authorUserId) return;
+    if (!title || !authorUserId || !(id !== null || projectId)) return;
 
     const formattedStartDate = formatISO(new Date(startDate), {
       representation: "complete",
@@ -45,12 +45,12 @@ function ModalNewTask({ isOpen, onClose, id }: ModalNewTaskProps) {
       points: parseInt(points),
       authorUserId: parseInt(authorUserId),
       assignedUserId: parseInt(assignedUserId),
-      projectId: Number(id),
+      projectId: id !== null ? Number(id) : Number(projectId),
     });
   };
 
   const isFormValid = () => {
-    return title && authorUserId;
+    return title && authorUserId && !(id !== null || projectId);
   };
 
   const selectStyles =
@@ -162,6 +162,16 @@ function ModalNewTask({ isOpen, onClose, id }: ModalNewTaskProps) {
           value={assignedUserId}
           onChange={(e) => setAssignedUserId(e.target.value)}
         />
+
+        {id === null && (
+          <input
+            type="text"
+            className={inputStyles}
+            placeholder="Project ID"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+          />
+        )}
 
         <button
           type="submit"
