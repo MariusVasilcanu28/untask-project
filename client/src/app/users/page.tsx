@@ -107,7 +107,7 @@ const columns: GridColDef[] = [
       <div className="flex h-full w-full items-center justify-center">
         <div className="h-9 w-9">
           <Image
-            src={`/${params.value || "placeholder-avatar.png"}`}
+            src={`https://untask-s3.s3.eu-central-1.amazonaws.com/${params.value || "placeholder-avatar.png"}`}
             alt={params.row.username || "user"}
             width={36}
             height={36}

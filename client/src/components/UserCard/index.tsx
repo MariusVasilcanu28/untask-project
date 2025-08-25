@@ -25,7 +25,7 @@ const UserCard = ({ user }: UserCardProps) => {
         <div className="h-12 w-12 shrink-0">
           {hasAvatar ? (
             <Image
-              src={`/${user.profilePictureUrl!}`}
+              src={`https://untask-s3.s3.eu-central-1.amazonaws.com/${user.profilePictureUrl!}`}
               alt={user.username ? `${user.username}'s avatar` : "User avatar"}
               width={48}
               height={48}

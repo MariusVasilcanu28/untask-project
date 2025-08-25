@@ -41,7 +41,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
       {task.attachments && task.attachments.length > 0 && (
         <div className="relative">
           <Image
-            src={`/${task.attachments[0].fileURL}`}
+            src={`https://untask-s3.s3.eu-central-1.amazonaws.com/${task.attachments[0].fileURL}`}
             alt={task.attachments[0].fileName || "Attachment"}
             width={800}
             height={600}
