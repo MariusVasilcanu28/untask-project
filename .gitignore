@@ -4,4 +4,6 @@ client/dist/
 server/dist/
 client/.env
 server/.env
+client/.env.local
+server/.env.local
 client/.next/
