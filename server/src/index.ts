@@ -1,17 +1,17 @@
-import express from "express";
-import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 
 // Route imports
 import projectRoutes from "./routes/projectRoutes";
-import taskRoutes from "./routes/taskRoutes";
-import searchRoutes from "./routes/searchRoutes";
-import userRoutes from "./routes/userRoutes";
-import teamRoutes from "./routes/teamRoutes";
 import { reseedRoutes } from "./routes/reseedRoutes";
+import searchRoutes from "./routes/searchRoutes";
+import taskRoutes from "./routes/taskRoutes";
+import teamRoutes from "./routes/teamRoutes";
+import userRoutes from "./routes/userRoutes";
 
 // Configurations
 dotenv.config();
