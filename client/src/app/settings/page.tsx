@@ -1,8 +1,5 @@
 import Header from "@/components/Header";
 import ReseedButton from "@/components/ReseedButton";
-import { useGetAuthUserQuery } from "@/state/api";
-import { signOut } from "aws-amplify/auth";
-import React from "react";
 
 const Settings = () => {
   const userSettings = {
@@ -11,11 +8,6 @@ const Settings = () => {
     teamName: "Development Team",
     roleName: "Developer",
   };
-
-  const { data: currentUser } = useGetAuthUserQuery({});
-
-  if (!currentUser) return null;
-  const currentUserDetails = currentUser?.userDetails;
 
   const labelStyles = "block text-sm font-medium dark:text-whtie";
   const textStyles =
