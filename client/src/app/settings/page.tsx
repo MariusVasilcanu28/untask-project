@@ -47,9 +47,9 @@ const Settings = () => {
           Developer tools
         </h3>
 
-        {currentUserDetails && currentUserDetails.username === "vmd-dev" && (
-          <ReseedButton anchorDaysAgo={90} />
-        )}
+        {/* {currentUserDetails && currentUserDetails.username === "vmd-dev" && ( */}
+        <ReseedButton anchorDaysAgo={90} />
+        {/* )} */}
       </div>
     </div>
   );
