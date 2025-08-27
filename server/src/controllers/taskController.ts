@@ -20,7 +20,8 @@ export const getTasks = async (req: Request, res: Response): Promise<void> => {
     });
     res.json(tasks);
   } catch (err: any) {
-    res.status(500).json({ message: `Error retreiving tasks: ${err.message}` });
+    console.error(err); // 👈 Log the full error object for detailed debugging
+    res.status(500).json({ message: `Error retrieving tasks: ${err.message}` });
   }
 };
 
@@ -60,6 +61,7 @@ export const createTask = async (
     });
     res.status(201).json(newTask);
   } catch (err: any) {
+    console.error(err);
     res.status(500).json({ message: `Error creating task: ${err.message}` });
   }
 };
@@ -82,6 +84,7 @@ export const updateTaskStatus = async (
     });
     res.json(updatedTask);
   } catch (err: any) {
+    console.error(err);
     res.status(500).json({ message: `Error updating task: ${err.message}` });
   }
 };
@@ -107,6 +110,7 @@ export const getUserTasks = async (
     });
     res.json(tasks);
   } catch (err: any) {
+    console.error(err);
     res
       .status(500)
       .json({ message: `Error retreiving user's tasks: ${err.message}` });
