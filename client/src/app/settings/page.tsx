@@ -1,5 +1,7 @@
 import Header from "@/components/Header";
 import ReseedButton from "@/components/ReseedButton";
+import { useGetAuthUserQuery } from "@/state/api";
+import { signOut } from "aws-amplify/auth";
 import React from "react";
 
 const Settings = () => {
@@ -9,6 +11,11 @@ const Settings = () => {
     teamName: "Development Team",
     roleName: "Developer",
   };
+
+  const { data: currentUser } = useGetAuthUserQuery({});
+
+  if (!currentUser) return null;
+  const currentUserDetails = currentUser?.userDetails;
 
   const labelStyles = "block text-sm font-medium dark:text-whtie";
   const textStyles =
@@ -39,7 +46,10 @@ const Settings = () => {
         <h3 className="mb-2 text-lg font-semibold dark:text-white">
           Developer tools
         </h3>
-        <ReseedButton anchorDaysAgo={90} />
+
+        {currentUserDetails && currentUserDetails.username === "vmd-dev" && (
+          <ReseedButton anchorDaysAgo={90} />
+        )}
       </div>
     </div>
   );

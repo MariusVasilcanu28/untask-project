@@ -7,6 +7,6 @@ const router = Router();
 router.get("/", getProjects);
 
 // Post
-router.post("/create-user", createProject);
+router.post("/", createProject);
 
 export default router;
