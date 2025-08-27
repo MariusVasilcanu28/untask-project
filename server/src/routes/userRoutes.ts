@@ -8,6 +8,6 @@ router.get("/", getUsers);
 router.get("/:cognitoId", getUser);
 
 // Post
-router.post("/create-user", postUser);
+router.post("/", postUser);
 
 export default router;
