@@ -20,7 +20,6 @@ export const getTasks = async (req: Request, res: Response): Promise<void> => {
     });
     res.json(tasks);
   } catch (err: any) {
-    console.error(err); // 👈 Log the full error object for detailed debugging
     res.status(500).json({ message: `Error retrieving tasks: ${err.message}` });
   }
 };
